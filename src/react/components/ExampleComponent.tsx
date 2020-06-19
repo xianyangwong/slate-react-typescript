@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-class ExampleComponent extends Component {
-    constructor() {
-        super();
-    }
+class ExampleComponent extends Component<{shopname: string}> {
 
     render() {
         const { shopname } = this.props;
@@ -14,4 +11,4 @@ class ExampleComponent extends Component {
         );
     }
 }
-export default ExampleComponent;
+export default ExampleComponent

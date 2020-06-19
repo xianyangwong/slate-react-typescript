@@ -2,7 +2,7 @@
   "name": "slate-react-starter",
   "version": "1.0.0",
   "private": true,
-  "author": "Shopify Inc., Liron Navon",
+  "author": "Xian Yang Wong",
   "description": "A barebones, Slate compatible, starting point for developing Shopify themes with react.",
   "keywords": [
     "shopify",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/liron-navon/slate-react-starter.git"
+    "url": "https://github.com/xianyangwong/slate-react-typescript.git"
   },
   "devDependencies": {
     "@shopify/slate-tools": "^1.0.0-beta.18",
@@ -28,14 +28,27 @@
     "postcss-url": "^8.0.0"
   },
   "scripts": {
-    "start": "slate-tools start",
+    "start": "yarn compile && concurrently \"yarn watch:react\" \"slate-tools start\"",
+    "start:slate": "slate-tools start",
     "watch": "slate-tools start --skipFirstDeploy",
+    "watch:react": "ts-node --project tsconfig.compile.json tools/watchReactTemplates.ts",
     "build": "slate-tools build",
     "deploy": "slate-tools build && slate-tools deploy",
-    "zip": "slate-tools build && slate-tools zip"
+    "zip": "slate-tools build && slate-tools zip",
+    "compile": "tsc"
   },
   "dependencies": {
+    "@types/jest": "^24.0.12",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.8.24",
+    "@types/react-dom": "^16.8.5",
+    "concurrently": "^5.2.0",
+    "husky": "^4.2.5",
+    "node-watch": "^0.6.4",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.2.4",
+    "typescript-fsa": "^3.0.0-beta-2"
   }
 }

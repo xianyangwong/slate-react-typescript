@@ -1,0 +1,5 @@
+{
+    "hooks": {
+      "prepare-commit-msg": "bash ./tools/git-commit-message.sh"
+    }
+}
