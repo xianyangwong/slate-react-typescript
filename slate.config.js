@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -12,7 +12,7 @@ const alias = {
 const part = {
     resolve: {
         alias,
-        extensions: ['.js', '.css', '.json']
+        extensions: ['.jsx','.js', '.css', '.json']
     },
     module: {
         rules: [
@@ -21,7 +21,11 @@ const part = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: [
+                        "@babel/preset-env",
+                        "@babel/preset-react",
+                        "@babel/preset-typescript"],
+                    plugins: ["transform-regenerator"]
                 }
             }
         ]

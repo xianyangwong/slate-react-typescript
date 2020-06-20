@@ -58,3 +58,7 @@ The only files changed are:
 1. scripts/layout/theme.js : added a function to load the react component
 2. layout/theme.liquid : added an anchor for react to load on to
 4. created /react directory which contain all of the react logic.
+
+#### known issues
+
+Disable slate analytics by set the `tracking` to false in `~/.slaterc`

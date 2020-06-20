@@ -1,4 +1,5 @@
-import ReactDOM from "react-dom";
+/* eslint-disable */
+import ReactDOM from 'react-dom';
 import React from "react";
 
 /**
@@ -18,7 +19,8 @@ function getAttributes(el, prefix = null) {
             let value = attributeNode.nodeValue.trim();
             if (prefix) {
                 if (name.startsWith(prefix)) {
-                    name = name.replace(prefix, '');
+                    name = name.replace(prefix, '')
+                        .replace(/-(\w)/g, (match, p1) => p1.toUpperCase());
                 } else {
                     return acc;
                 }
@@ -36,17 +38,19 @@ function getAttributes(el, prefix = null) {
         }, {});
 }
 
-export function mountReact(wrapperSelector, RootComponent) {
-    const el = document.querySelector(wrapperSelector);
+export function mountReact(wrapperSelector, RootComponent, extraProps) {
+    let el = wrapperSelector instanceof HTMLElement ? wrapperSelector : document.querySelector(wrapperSelector)
+
     if (el) {
-        const props = getAttributes(el, 'prop-');
-        console.log(JSON.stringify(props))
-        ReactDOM.render(<RootComponent {...props}/>, el);
-        return true;
+        let props = getAttributes(el, 'prop-');
+
+        if(extraProps){
+            props = {...props, ...extraProps};
+        }
+
+        return ReactDOM.render(<RootComponent {...props}/>, el);
     } else {
         console.error(`Unable to find element by selector: ${wrapperSelector}`);
         return false;
     }
 }
-
-
